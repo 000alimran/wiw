@@ -1,145 +1,202 @@
-const essays = [
-  {
-    kicker: "Money Psychology",
-    title: "The richest decisions are often the quietest ones.",
-    excerpt:
-      "Wealth rarely arrives with a soundtrack. It compounds through boring habits, patient choices, and the ability to ignore noise.",
-    meta: "6 min read",
-  },
-  {
-    kicker: "Business",
-    title: "Revenue is loud. Cash flow tells the truth.",
-    excerpt:
-      "A growing business can still be fragile. Learn to read what actually keeps a company alive when the excitement fades.",
-    meta: "8 min read",
-  },
-  {
-    kicker: "Investing",
-    title: "The cost of always needing action.",
-    excerpt:
-      "Sometimes the most profitable move is not another trade, purchase, or pivot. It is the discipline to wait.",
-    meta: "5 min read",
-  },
-];
+import Link from "next/link";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+import { whispers } from "@/lib/content";
 
-const principles = [
-  "Spend less than your ego wants.",
-  "Own productive assets.",
-  "Protect your downside.",
-  "Let time do heavy work.",
+const moneyTopics = [
+  ["01", "Earn", "Income, skills and business economics."],
+  ["02", "Keep", "Cash flow, spending and financial resilience."],
+  ["03", "Own", "Assets, investing and productive ownership."],
+  ["04", "Wait", "Compounding, patience and long-term thinking."],
 ];
 
 export default function Home() {
+  const featured = whispers.slice(0, 3);
+
   return (
     <main>
-      <header className="site-header shell">
-        <a className="brand" href="#" aria-label="Wealth in Whisper home">
-          <span className="brand-mark">W</span>
-          <span>WEALTH IN WHISPER</span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#essays">Essays</a>
-          <a href="#principles">Principles</a>
-          <a href="#letter">The Letter</a>
-        </nav>
-      </header>
+      <div className="home-frame">
+        <SiteHeader />
 
-      <section className="hero shell">
-        <div className="eyebrow">A quiet publication about money</div>
-        <h1>
-          Wealth does not
-          <br />
-          need to be loud.
-        </h1>
-        <div className="hero-bottom">
-          <p>
-            Essays, ideas, and practical frameworks for earning better,
-            spending consciously, building durable businesses, and thinking
-            long term.
-          </p>
-          <a className="text-link" href="#essays">
-            Start reading <span>↘</span>
-          </a>
+        <section className="home-hero shell">
+          <div className="hero-kicker">
+            <span>INVESTING</span>
+            <span>MINDSET</span>
+            <span>STRATEGY</span>
+          </div>
+
+          <h1>
+            WHERE FORTUNES
+            <br />
+            GROW IN SILENCE.
+          </h1>
+
+          <div className="hero-lower">
+            <p>
+              Clear thinking on money, business, risk and behaviour for people
+              who would rather build quietly than perform wealth publicly.
+            </p>
+            <div className="hero-actions">
+              <Link className="button button-acid" href="/whispers">
+                Read the whispers
+              </Link>
+              <Link className="button button-ghost" href="/tools">
+                Use money tools
+              </Link>
+            </div>
+          </div>
+
+          <div className="hero-stamp">
+            <span>PRIVATE</span>
+            <i>•</i>
+            <span>QUIET</span>
+            <i>•</i>
+            <span>INSIGHTFUL</span>
+          </div>
+        </section>
+      </div>
+
+      <section className="signal-strip">
+        <div className="shell signal-grid">
+          <p>THE THESIS</p>
+          <h2>
+            The goal is not to look rich. The goal is to become financially
+            difficult to break.
+          </h2>
         </div>
       </section>
 
-      <section className="manifesto">
-        <div className="shell manifesto-grid">
-          <p className="section-label">01 / Our belief</p>
-          <blockquote>
-            “The point is not to look rich. The point is to become financially
-            hard to break.”
-          </blockquote>
+      <section className="home-section shell">
+        <div className="section-title-row">
+          <div>
+            <p className="mini-label">Latest thinking</p>
+            <h2>Whispers worth keeping.</h2>
+          </div>
+          <Link className="under-link" href="/whispers">
+            View all whispers ↗
+          </Link>
         </div>
-      </section>
 
-      <section id="essays" className="shell section">
-        <div className="section-head">
-          <p className="section-label">02 / Latest thinking</p>
-          <h2>Notes worth keeping.</h2>
-        </div>
-        <div className="essay-grid">
-          {essays.map((essay, index) => (
-            <article className="essay-card" key={essay.title}>
-              <div className="essay-number">0{index + 1}</div>
-              <div>
-                <p className="kicker">{essay.kicker}</p>
-                <h3>{essay.title}</h3>
-                <p className="excerpt">{essay.excerpt}</p>
+        <div className="featured-grid">
+          {featured.map((item, index) => (
+            <Link
+              className={`featured-card featured-card-${index + 1}`}
+              href={`/whispers/${item.slug}`}
+              key={item.slug}
+            >
+              <div className="card-top">
+                <span>WHISPER {item.number}</span>
+                <span>{item.category}</span>
               </div>
-              <div className="card-meta">
-                <span>{essay.meta}</span>
+              <h3>{item.title}</h3>
+              <p>{item.excerpt}</p>
+              <div className="card-bottom">
+                <span>{item.readTime}</span>
                 <span>Read ↗</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section id="principles" className="principles">
+      <section className="dark-section">
         <div className="shell">
-          <div className="section-head light">
-            <p className="section-label">03 / Quiet wealth principles</p>
-            <h2>Simple rules. Difficult practice.</h2>
+          <div className="section-title-row section-title-light">
+            <div>
+              <p className="mini-label">A simple operating system</p>
+              <h2>Four verbs for quieter wealth.</h2>
+            </div>
           </div>
-          <div className="principle-list">
-            {principles.map((item, index) => (
-              <div className="principle" key={item}>
-                <span>0{index + 1}</span>
-                <p>{item}</p>
-              </div>
+
+          <div className="money-topics">
+            {moneyTopics.map(([number, title, copy]) => (
+              <article className="money-topic" key={title}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="letter" className="shell letter">
-        <div>
-          <p className="section-label">04 / Wealth in Whisper Letter</p>
-          <h2>One thoughtful note about money. Occasionally.</h2>
+      <section className="tools-preview shell">
+        <div className="tools-copy">
+          <p className="mini-label">Money Tools</p>
+          <h2>Make the numbers visible.</h2>
+          <p>
+            Test compounding, estimate a freedom number, or see how long a
+            business can breathe before cash runs out.
+          </p>
+          <Link className="button button-dark" href="/tools">
+            Open the tools
+          </Link>
         </div>
-        <form className="subscribe" action="#">
-          <label className="sr-only" htmlFor="email">
-            Email address
-          </label>
-          <input id="email" type="email" placeholder="you@example.com" />
-          <button type="submit">Join the letter</button>
-        </form>
+
+        <div className="mini-dashboard" aria-label="Illustrative wealth projection">
+          <div className="dash-head">
+            <span>COMPOUNDING / ILLUSTRATION</span>
+            <span>20 YEARS</span>
+          </div>
+          <div className="dash-number">1,284,000</div>
+          <div className="growth-bars" aria-hidden="true">
+            {[18, 22, 27, 31, 38, 44, 51, 59, 68, 78, 89, 100].map(
+              (height, index) => (
+                <i key={height} style={{ height: `${height}%` }}>
+                  <span>{index + 1}</span>
+                </i>
+              )
+            )}
+          </div>
+          <div className="dash-foot">
+            <span>TIME</span>
+            <span>PATIENCE</span>
+            <span>CONSISTENCY</span>
+          </div>
+        </div>
       </section>
 
-      <footer className="shell footer">
-        <div>
-          <div className="brand footer-brand">
-            <span className="brand-mark">W</span>
-            <span>WEALTH IN WHISPER</span>
+      <section className="bangladesh-preview">
+        <div className="shell bangladesh-grid">
+          <div>
+            <p className="mini-label">Bangladesh Money</p>
+            <h2>Global principles. Local reality.</h2>
           </div>
-          <p>Quiet money. Clear thinking.</p>
+          <div>
+            <p>
+              A growing library about cash, salary, business money, inflation,
+              investing basics and financial systems in the context people here
+              actually live in.
+            </p>
+            <Link className="under-link light-link" href="/bangladesh-money">
+              Explore the library ↗
+            </Link>
+          </div>
         </div>
-        <div className="footer-note">
-          <p>For education and reflection, not personal financial advice.</p>
-          <p>© {new Date().getFullYear()} Wealth in Whisper</p>
+      </section>
+
+      <section className="letter-section shell">
+        <div>
+          <p className="mini-label">The Whisper Letter</p>
+          <h2>One useful note. No shouting.</h2>
         </div>
-      </footer>
+        <div className="letter-copy">
+          <p>
+            Essays, frameworks and money ideas delivered through the existing
+            WIW Substack.
+          </p>
+          <a
+            className="button button-acid"
+            href="https://wealthinwhispers.substack.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join on Substack ↗
+          </a>
+        </div>
+      </section>
+
+      <SiteFooter />
     </main>
   );
 }
