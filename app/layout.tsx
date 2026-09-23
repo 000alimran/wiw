@@ -2,8 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Wealth in Whisper",
-  description: "Quiet money. Clear thinking. Essays and tools for building wealth with patience, clarity, and discipline.",
+  title: {
+    default: "Wealth in Whispers",
+    template: "%s | Wealth in Whispers",
+  },
+  description:
+    "Where fortunes grow in silence. Clear thinking on money, investing, business, behaviour and long-term wealth.",
+  keywords: [
+    "personal finance",
+    "investing",
+    "wealth",
+    "money psychology",
+    "business",
+    "Bangladesh finance",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
