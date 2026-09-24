@@ -8,7 +8,11 @@ export default function SiteHeader() {
           <span className="logo-w">W</span>
           <span className="logo-arrow">↑</span>
         </span>
-        <span className="logo-words">WEALTH IN<br />WHISPERS</span>
+        <span className="logo-words">
+          WEALTH IN
+          <br />
+          WHISPERS
+        </span>
       </Link>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -26,6 +30,26 @@ export default function SiteHeader() {
       >
         Join the letter
       </a>
+
+      <details className="mobile-menu">
+        <summary aria-label="Open navigation">
+          <span />
+          <span />
+        </summary>
+        <nav className="mobile-nav" aria-label="Mobile navigation">
+          <Link href="/whispers">Whispers</Link>
+          <Link href="/tools">Money Tools</Link>
+          <Link href="/bangladesh-money">Bangladesh Money</Link>
+          <Link href="/about">Manifesto</Link>
+          <a
+            href="https://wealthinwhispers.substack.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join the letter ↗
+          </a>
+        </nav>
+      </details>
     </header>
   );
 }
