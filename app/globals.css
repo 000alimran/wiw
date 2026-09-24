@@ -2205,7 +2205,7 @@ canvas {
 
 /* ===== Spaceship-inspired typography system ===== */
 :root {
-  --font-proxima-like: var(--font-ui), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-proxima-like: "GB Proxima Nova", "Proxima Nova", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --type-88: 88px;
   --type-72: 72px;
