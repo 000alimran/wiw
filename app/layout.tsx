@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#213100",
+  themeColor: "#12180d",
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen overflow-x-hidden">{children}</body>
     </html>
   );
 }
