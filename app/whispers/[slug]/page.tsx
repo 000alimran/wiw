@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react";
+
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { whispers } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -68,43 +75,78 @@ export default async function WhisperDetail({
 
   return (
     <main>
-      <SiteHeader />
-      <article className="article-shell shell">
-        <div className="article-topline">
-          <span>WHISPER {item.number}</span>
-          <span>{item.category}</span>
-          <span>{item.readTime}</span>
-        </div>
-        <h1>{item.title}</h1>
-        <p className="article-deck">{item.excerpt}</p>
+      <div className="bg-olive-950 text-white">
+        <SiteHeader />
+        <section className="container py-10 md:py-16">
+          <Button asChild variant="ghost" className="-ml-3 text-white/55 hover:bg-white/5 hover:text-white">
+            <Link href="/whispers">
+              <ArrowLeft />
+              All whispers
+            </Link>
+          </Button>
 
-        <div className="article-body">
-          {body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-          <blockquote>
-            The useful financial question is rarely “What looks impressive?”
-            It is “What makes the next decade easier to survive and easier to
-            choose?”
-          </blockquote>
-          <p>
+          <div className="mt-7 flex flex-wrap items-center gap-2">
+            <Badge className="border border-white/10 bg-white/5 text-white/65 hover:bg-white/5">
+              Whisper {item.number}
+            </Badge>
+            <Badge className="border border-limebrand/20 bg-limebrand/10 text-limebrand hover:bg-limebrand/10">
+              {item.category}
+            </Badge>
+            <span className="text-xs text-white/35">{item.readTime}</span>
+          </div>
+
+          <h1 className="mt-6 max-w-5xl text-balance text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+            {item.title}
+          </h1>
+          <p className="mt-6 max-w-3xl text-pretty text-base leading-7 text-white/52 sm:text-lg">
+            {item.excerpt}
+          </p>
+        </section>
+      </div>
+
+      <article className="container py-12 md:py-20">
+        <div className="mx-auto max-w-3xl">
+          <div className="space-y-7 text-[1.05rem] leading-8 text-foreground/85 sm:text-lg">
+            {body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+
+          <Card className="my-10 border-olive-800/15 bg-secondary/60">
+            <CardContent className="p-6 sm:p-8">
+              <p className="text-balance text-2xl font-semibold leading-tight tracking-[-0.035em] sm:text-3xl">
+                The useful financial question is rarely “What looks impressive?”
+                It is “What makes the next decade easier to survive and easier to choose?”
+              </p>
+            </CardContent>
+          </Card>
+
+          <p className="text-[1.05rem] leading-8 text-foreground/85 sm:text-lg">
             WIW treats this as a thinking framework, not a prescription.
             Personal circumstances, taxes, regulation, risk tolerance and time
             horizon can materially change what a sensible decision looks like.
           </p>
-        </div>
 
-        <div className="article-end">
-          <p>Keep the signal. Ignore the theatre.</p>
-          <a
-            href="https://wealthinwhispers.substack.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Get future whispers by email ↗
-          </a>
+          <Separator className="my-10" />
+
+          <div className="flex flex-col gap-4 rounded-xl border bg-card p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-semibold">Keep the signal. Ignore the theatre.</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Get future whispers through the WIW letter.
+              </p>
+            </div>
+            <Button asChild>
+              <a href="https://wealthinwhispers.substack.com/" target="_blank" rel="noreferrer">
+                <Mail />
+                Join the letter
+                <ArrowUpRight />
+              </a>
+            </Button>
+          </div>
         </div>
       </article>
+
       <SiteFooter />
     </main>
   );
