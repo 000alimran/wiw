@@ -53,7 +53,7 @@ export default function HeroWealthSimulator() {
             <div
               key={index}
               className="flex-1 rounded-t-sm bg-gradient-to-t from-limebrand/35 to-limebrand transition-all duration-300"
-              style={{ height: `${Math.max(8, height * (years / 20))}%` }}
+              style={{ height: `${Math.min(100, Math.max(8, height * (years / 20)))}%` }}
             />
           ))}
         </div>
