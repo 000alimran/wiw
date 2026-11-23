@@ -5,11 +5,13 @@ import { ArrowUpRight, Sparkles, TrendingUp } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useCurrencySymbol } from "@/components/CurrencyProvider";
 
 const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
 export default function HeroWealthSimulator() {
-  const [monthly, setMonthly] = useState(10000);
+  const S = useCurrencySymbol();
+  const [monthly, setMonthly] = useState(500);
   const [years, setYears] = useState(15);
 
   const value = useMemo(() => {
@@ -43,7 +45,7 @@ export default function HeroWealthSimulator() {
         <p className="text-sm text-white/45">Projected value</p>
         <div className="mt-1 flex items-end gap-2">
           <strong className="text-4xl font-semibold tracking-[-0.04em] text-limebrand sm:text-5xl">
-            {formatter.format(value)}
+            {S}{formatter.format(value)}
           </strong>
           <span className="pb-1 text-xs text-white/35">at 8% illustration</span>
         </div>
@@ -64,13 +66,13 @@ export default function HeroWealthSimulator() {
             <input
               className="mt-2 w-full accent-[#C7E75A]"
               type="range"
-              min="3000"
-              max="50000"
-              step="1000"
+              min="50"
+              max="5000"
+              step="50"
               value={monthly}
               onChange={(e) => setMonthly(Number(e.target.value))}
             />
-            <strong className="mt-1 block text-sm">৳{formatter.format(monthly)}</strong>
+            <strong className="mt-1 block text-sm">{S}{formatter.format(monthly)}</strong>
           </label>
 
           <label className="rounded-xl border border-white/10 bg-white/5 p-3">

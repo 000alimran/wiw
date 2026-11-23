@@ -5,8 +5,10 @@ import BrandLogo from "@/components/BrandLogo";
 import { Separator } from "@/components/ui/separator";
 
 const explore = [
-  ["Whispers", "/whispers"],
+  ["Breakdowns", "/breakdowns"],
   ["Money Tools", "/tools"],
+  ["Learn", "/learn"],
+  ["Whispers", "/whispers"],
   ["Bangladesh Money", "/bangladesh-money"],
   ["Manifesto", "/about"],
 ];
@@ -39,6 +41,8 @@ export default function SiteFooter() {
             <div className="grid content-start gap-3">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-limebrand">Elsewhere</p>
               {[
+                ["YouTube", "https://www.youtube.com/@wealthinwhispers"],
+                ["Instagram", "https://www.instagram.com/wealthinwhisper/"],
                 ["Substack", "https://wealthinwhispers.substack.com/"],
                 ["Facebook", "https://www.facebook.com/wealthinwhisper"],
                 ["TikTok", "https://www.tiktok.com/@wealthinwhisper"],

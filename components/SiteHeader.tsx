@@ -14,10 +14,11 @@ import {
 } from "@/components/ui/sheet";
 
 const nav = [
+  ["Breakdowns", "/breakdowns"],
+  ["Tools", "/tools"],
+  ["Learn", "/learn"],
   ["Whispers", "/whispers"],
-  ["Money Tools", "/tools"],
-  ["Bangladesh Money", "/bangladesh-money"],
-  ["Manifesto", "/about"],
+  ["Bangladesh", "/bangladesh-money"],
 ];
 
 export default function SiteHeader() {

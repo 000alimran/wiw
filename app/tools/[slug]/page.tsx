@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getTool, toolCatalog } from "@/lib/tool-catalog";
 import ToolCalculator from "./ToolCalculator";
+import { CurrencySwitch } from "@/components/CurrencyProvider";
 
 export function generateStaticParams() {
   return toolCatalog.map((tool) => ({ slug: tool.slug }));
@@ -76,6 +77,9 @@ export default async function ToolDetailPage({
       </div>
 
       <section className="container py-10 md:py-16">
+        <div className="mb-4 flex justify-end">
+          <CurrencySwitch />
+        </div>
         <ToolCalculator slug={slug} />
 
         <div className="mt-12 rounded-xl border bg-card p-5 sm:p-6">

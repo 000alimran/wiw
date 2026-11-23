@@ -15,6 +15,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { CurrencySwitch, useCurrencySymbol } from "@/components/CurrencyProvider";
 
 const fmt = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 const pct = (value: number) => (Number.isFinite(value) ? value.toFixed(1) : "0.0");
@@ -117,7 +118,8 @@ export default function ToolCalculator({ slug }: { slug: string }) {
 }
 
 function EmergencyFund() {
-  const [expenses, setExpenses] = useState(70000);
+  const S = useCurrencySymbol();
+  const [expenses, setExpenses] = useState(3000);
   const [dependents, setDependents] = useState(1);
   const [stability, setStability] = useState("stable");
 
@@ -155,12 +157,12 @@ function EmergencyFund() {
       <div className="grid gap-3 md:grid-cols-[1.2fr_.8fr]">
         <Result
           label="Suggested emergency reserve"
-          value={`৳${fmt.format(target)}`}
+          value={`${S}${fmt.format(target)}`}
           note={`${months} months of essential expenses based on the selected stability profile.`}
         />
         <div className="grid gap-3">
           <Stat label="Target months" value={String(months)} />
-          <Stat label="Monthly essentials" value={`৳${fmt.format(expenses)}`} />
+          <Stat label="Monthly essentials" value={`${S}${fmt.format(expenses)}`} />
         </div>
       </div>
     </ToolShell>
@@ -168,7 +170,8 @@ function EmergencyFund() {
 }
 
 function InflationReality() {
-  const [amount, setAmount] = useState(1000000);
+  const S = useCurrencySymbol();
+  const [amount, setAmount] = useState(10000);
   const [inflation, setInflation] = useState(7);
   const [years, setYears] = useState(10);
 
@@ -192,13 +195,13 @@ function InflationReality() {
       <div className="grid gap-3 md:grid-cols-[1.2fr_.8fr]">
         <Result
           label="Future purchasing power"
-          value={`৳${fmt.format(futurePower)}`}
+          value={`${S}${fmt.format(futurePower)}`}
           note="Equivalent buying power in today's money, using a constant inflation assumption."
           tone="warning"
         />
         <div className="grid gap-3">
           <Stat label="Purchasing power lost" value={`${pct(lostPct)}%`} good={false} />
-          <Stat label="Value eroded" value={`৳${fmt.format(erosion)}`} />
+          <Stat label="Value eroded" value={`${S}${fmt.format(erosion)}`} />
         </div>
       </div>
     </ToolShell>
@@ -206,13 +209,14 @@ function InflationReality() {
 }
 
 function NetWorth() {
-  const [cash, setCash] = useState(300000);
-  const [investments, setInvestments] = useState(500000);
+  const S = useCurrencySymbol();
+  const [cash, setCash] = useState(15000);
+  const [investments, setInvestments] = useState(25000);
   const [property, setProperty] = useState(0);
   const [business, setBusiness] = useState(0);
-  const [otherAssets, setOtherAssets] = useState(100000);
-  const [loans, setLoans] = useState(200000);
-  const [credit, setCredit] = useState(50000);
+  const [otherAssets, setOtherAssets] = useState(5000);
+  const [loans, setLoans] = useState(10000);
+  const [credit, setCredit] = useState(2000);
   const [otherDebt, setOtherDebt] = useState(0);
 
   const assets = cash + investments + property + business + otherAssets;
@@ -251,13 +255,13 @@ function NetWorth() {
       <div className="grid gap-3 md:grid-cols-[1.2fr_.8fr]">
         <Result
           label="Net worth"
-          value={`৳${fmt.format(netWorth)}`}
+          value={`${S}${fmt.format(netWorth)}`}
           note="Assets minus liabilities. This is a snapshot, not a measure of income."
           tone={netWorth >= 0 ? "lime" : "warning"}
         />
         <div className="grid gap-3">
-          <Stat label="Total assets" value={`৳${fmt.format(assets)}`} />
-          <Stat label="Total liabilities" value={`৳${fmt.format(liabilities)}`} />
+          <Stat label="Total assets" value={`${S}${fmt.format(assets)}`} />
+          <Stat label="Total liabilities" value={`${S}${fmt.format(liabilities)}`} />
           <Stat label="Debt / asset ratio" value={`${pct(debtRatio)}%`} good={debtRatio < 30} />
         </div>
       </div>
@@ -266,8 +270,9 @@ function NetWorth() {
 }
 
 function SavingsGoal() {
-  const [target, setTarget] = useState(2000000);
-  const [current, setCurrent] = useState(200000);
+  const S = useCurrencySymbol();
+  const [target, setTarget] = useState(100000);
+  const [current, setCurrent] = useState(10000);
   const [years, setYears] = useState(5);
   const [rate, setRate] = useState(7);
 
@@ -300,12 +305,12 @@ function SavingsGoal() {
       <div className="grid gap-3 md:grid-cols-[1.2fr_.8fr]">
         <Result
           label="Estimated monthly contribution"
-          value={`৳${fmt.format(monthly)}`}
+          value={`${S}${fmt.format(monthly)}`}
           note="Assumes monthly contributions and a constant illustrative return."
         />
         <div className="grid gap-3">
-          <Stat label="Without growth" value={`৳${fmt.format(noGrowthMonthly)}/mo`} />
-          <Stat label="Monthly difference from growth" value={`৳${fmt.format(savedByGrowth)}`} good />
+          <Stat label="Without growth" value={`${S}${fmt.format(noGrowthMonthly)}/mo`} />
+          <Stat label="Monthly difference from growth" value={`${S}${fmt.format(savedByGrowth)}`} good />
         </div>
       </div>
     </ToolShell>
@@ -313,7 +318,8 @@ function SavingsGoal() {
 }
 
 function CostOfWaiting() {
-  const [monthly, setMonthly] = useState(10000);
+  const S = useCurrencySymbol();
+  const [monthly, setMonthly] = useState(500);
   const [horizon, setHorizon] = useState(20);
   const [delay, setDelay] = useState(5);
   const [rate, setRate] = useState(8);
@@ -345,19 +351,20 @@ function CostOfWaiting() {
       </div>
 
       <div className="grid gap-3 lg:grid-cols-3">
-        <Result label="Start now" value={`৳${fmt.format(startNow)}`} note={`${horizon} years contributing`} />
-        <Result label={`Wait ${delay} years`} value={`৳${fmt.format(startLater)}`} note={`${delayedYears} years contributing`} tone="neutral" />
-        <Result label="Illustrative cost of waiting" value={`৳${fmt.format(cost)}`} note={`${pct(gapPct)}% lower ending value`} tone="warning" />
+        <Result label="Start now" value={`${S}${fmt.format(startNow)}`} note={`${horizon} years contributing`} />
+        <Result label={`Wait ${delay} years`} value={`${S}${fmt.format(startLater)}`} note={`${delayedYears} years contributing`} tone="neutral" />
+        <Result label="Illustrative cost of waiting" value={`${S}${fmt.format(cost)}`} note={`${pct(gapPct)}% lower ending value`} tone="warning" />
       </div>
     </ToolShell>
   );
 }
 
 function LifestyleInflation() {
-  const [oldIncome, setOldIncome] = useState(80000);
-  const [newIncome, setNewIncome] = useState(120000);
-  const [oldExpenses, setOldExpenses] = useState(55000);
-  const [newExpenses, setNewExpenses] = useState(90000);
+  const S = useCurrencySymbol();
+  const [oldIncome, setOldIncome] = useState(5000);
+  const [newIncome, setNewIncome] = useState(7500);
+  const [oldExpenses, setOldExpenses] = useState(3500);
+  const [newExpenses, setNewExpenses] = useState(5500);
 
   const incomeGrowth = oldIncome > 0 ? ((newIncome - oldIncome) / oldIncome) * 100 : 0;
   const expenseGrowth = oldExpenses > 0 ? ((newExpenses - oldExpenses) / oldExpenses) * 100 : 0;

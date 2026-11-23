@@ -16,7 +16,9 @@ import SiteHeader from "@/components/SiteHeader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { breakdowns } from "@/lib/breakdowns";
 import { whispers } from "@/lib/content";
+import { glossary } from "@/lib/glossary";
 
 const moneyTopics = [
   {
@@ -43,6 +45,7 @@ const moneyTopics = [
 
 export default function Home() {
   const featured = whispers.slice(0, 3);
+  const latest = [...breakdowns].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
   return (
     <main>
@@ -52,29 +55,29 @@ export default function Home() {
           <div>
             <div className="flex flex-wrap gap-2">
               <Badge className="border border-white/10 bg-white/5 text-white/70 hover:bg-white/5">
+                Breakdowns
+              </Badge>
+              <Badge className="border border-white/10 bg-white/5 text-white/70 hover:bg-white/5">
+                AI &amp; Tech
+              </Badge>
+              <Badge className="border border-white/10 bg-white/5 text-white/70 hover:bg-white/5">
                 Investing
-              </Badge>
-              <Badge className="border border-white/10 bg-white/5 text-white/70 hover:bg-white/5">
-                Mindset
-              </Badge>
-              <Badge className="border border-white/10 bg-white/5 text-white/70 hover:bg-white/5">
-                Strategy
               </Badge>
             </div>
 
             <h1 className="mt-7 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-6xl lg:text-7xl xl:text-[5.6rem] xl:leading-[.96]">
-              Wealth grows quieter than people think.
+              Business breakdowns for quiet wealth builders.
             </h1>
 
             <p className="mt-7 max-w-2xl text-pretty text-base leading-7 text-white/58 sm:text-lg">
-              Clear thinking on money, business, risk and behaviour for people
-              who would rather build quietly than perform wealth publicly.
+              How companies actually make money, explained from their own filings — plus
+              plain-English money lessons and free calculators. No hype, no stock picks.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="bg-limebrand text-olive-950 hover:bg-limebrand-soft">
-                <Link href="/whispers">
-                  Read the whispers
+                <Link href="/breakdowns">
+                  Read the breakdowns
                   <ArrowRight />
                 </Link>
               </Button>
@@ -119,6 +122,48 @@ export default function Home() {
           <h2 className="max-w-5xl text-balance text-3xl font-semibold tracking-[-0.04em] text-olive-950 sm:text-4xl lg:text-5xl">
             The goal is not to look rich. The goal is to become financially difficult to break.
           </h2>
+        </div>
+      </section>
+
+      <section className="container py-16 md:py-24">
+        <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <Badge variant="outline" className="mb-4">Latest breakdowns</Badge>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+              The numbers behind the headlines.
+            </h2>
+          </div>
+          <Button asChild variant="ghost" className="w-fit px-0 hover:bg-transparent">
+            <Link href="/breakdowns">
+              All breakdowns
+              <ArrowUpRight />
+            </Link>
+          </Button>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-3">
+          {latest.map((b) => (
+            <Link key={b.slug} href={`/breakdowns/${b.slug}`} className="group rounded-2xl border bg-olive-950 p-6 text-white transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="flex items-center justify-between text-xs text-white/50">
+                <span>{b.company}</span>
+                {b.youtubeId ? <span className="rounded-full bg-limebrand/15 px-2 py-0.5 text-limebrand">Video</span> : null}
+              </div>
+              <p className="mt-6 text-4xl font-semibold tracking-[-0.04em] text-limebrand">{b.keyNumbers[0].value}</p>
+              <p className="text-xs text-white/45">{b.keyNumbers[0].label}</p>
+              <h3 className="mt-6 text-xl font-semibold leading-snug tracking-[-0.02em]">{b.title}</h3>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/80">
+                Read the breakdown
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap items-center gap-2 text-sm">
+          <span className="mr-1 font-semibold">Learn the terms:</span>
+          {glossary.slice(0, 6).map((t) => (
+            <Link key={t.slug} href={`/learn/${t.slug}`} className="rounded-full border px-3 py-1.5 hover:bg-secondary">
+              {t.term.split(" (")[0]}
+            </Link>
+          ))}
         </div>
       </section>
 
