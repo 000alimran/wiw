@@ -288,20 +288,20 @@ export default function Home() {
           <div>
             <Badge variant="outline">
               <Landmark className="mr-1 size-3.5" />
-              Bangladesh Money
+              Learn
             </Badge>
             <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-[-0.04em] sm:text-4xl lg:text-5xl">
-              Global principles. Local reality.
+              The money terms behind the headlines.
             </h2>
           </div>
           <div>
             <p className="max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
-              A growing library about cash, salary, business money, inflation,
-              investing basics and financial systems in the context people here actually live in.
+              S-1 filings, IPO lock-ups, SAFEs, fair-value charges. Each term explained in one
+              sentence first, then with a real example from the companies we break down.
             </p>
             <Button asChild variant="link" className="mt-3 h-auto px-0">
-              <Link href="/bangladesh-money">
-                Explore the library
+              <Link href="/learn">
+                Explore the glossary
                 <ArrowUpRight />
               </Link>
             </Button>

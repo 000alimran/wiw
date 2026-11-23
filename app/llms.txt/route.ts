@@ -27,7 +27,6 @@ ${L(whispers.map((w) => ({ t: w.title, u: `/whispers/${w.slug}` })))}
 
 ## Optional
 - [Manifesto](${SITE_URL}/about)
-- [Bangladesh Money](${SITE_URL}/bangladesh-money)
 - [Newsletter](https://wealthinwhispers.substack.com/)
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });

@@ -18,7 +18,6 @@ const nav = [
   ["Tools", "/tools"],
   ["Learn", "/learn"],
   ["Whispers", "/whispers"],
-  ["Bangladesh", "/bangladesh-money"],
 ];
 
 export default function SiteHeader() {

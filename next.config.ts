@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     // one canonical host: www -> apex (avoids duplicate URLs in Google)
     return [
+      { source: "/bangladesh-money", destination: "/learn", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.wealthinwhisper.com" }],

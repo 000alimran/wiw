@@ -9,7 +9,6 @@ const explore = [
   ["Money Tools", "/tools"],
   ["Learn", "/learn"],
   ["Whispers", "/whispers"],
-  ["Bangladesh Money", "/bangladesh-money"],
   ["Manifesto", "/about"],
 ];
 

@@ -19,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...glossary.map((t) => page(`/learn/${t.slug}`, 0.7)),
     page("/whispers", 0.7),
     ...whispers.map((w) => page(`/whispers/${w.slug}`, 0.6)),
-    page("/bangladesh-money", 0.5),
     page("/about", 0.4),
   ];
 }
