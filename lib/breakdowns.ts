@@ -25,6 +25,67 @@ const anthropicSources = [
 
 export const breakdowns: Breakdown[] = [
   {
+    slug: "nvidia-jensen-huang-11-days",
+    title: "Nvidia lost its CEO. 11 days later, his return added about $1 trillion.",
+    company: "Nvidia",
+    date: "2026-11-24",
+    dek: "Jensen Huang resigned, the board said he would not return, then it reinstated him unanimously. The stock's record one-day jump shows what investors call key-person risk.",
+    keyNumbers: [
+      { label: "Market value added in one day", value: "$888B–$1T" },
+      { label: "Previous one-day record", value: "≈ $450B" },
+      { label: "NVDA drop, Oct 29 → Nov 20 close", value: "–41%" },
+      { label: "Days between resignation and return", value: "11" },
+    ],
+    sections: [
+      {
+        heading: "The trillion-dollar day",
+        body: [
+          "On November 23, 2026, Nvidia's board announced that Jensen Huang had been reinstated as president, CEO and board member, effective immediately. The board said it voted unanimously after a series of discussions and meetings with Huang, and that it had received input from senior levels of the US government, on which basis it is confident his return poses no national security risk.",
+          "The stock rose more than 30% in a single session. Depending on the timestamp, reports put the market value added at between about $888 billion and $1 trillion, roughly double the previous one-day record of about $450 billion.",
+        ],
+      },
+      {
+        heading: "Eleven days, step by step",
+        body: [
+          "In early November, reports said Huang had been the target of a foreign intelligence effort involving a personal relationship with a woman alleged to have ties to Chinese intelligence; China's foreign ministry called the claim groundless. On November 8, Nvidia's board opened an independent investigation.",
+          "On November 11 the board accepted Huang's resignation, and on November 12 Nvidia announced it publicly. CFO Colette Kress became interim CEO and Harvey C. Jones was named the board's first-ever chair. On the November 17 earnings call, Jones said the board did not intend to reinstate Huang. Six days later, it did.",
+          "Between October 29 and the November 20 close, Nvidia's stock fell about 41%. Part of that reflected a wider sell-off in AI stocks; the CEO's exit added to it.",
+        ],
+      },
+      {
+        heading: "Why one person mattered this much",
+        body: [
+          "Huang co-founded Nvidia in 1993 and ran it for 33 years, steering it from graphics chips for games to the hardware behind much of today's AI. In the quarter just reported, Nvidia made $115.8 billion in revenue, about 93% of it from data centers (our math).",
+          "That business depends on relationships with cloud providers, AI labs and governments that control who can buy advanced chips. When those relationships run through one person, losing that person can look like losing the strategy.",
+        ],
+      },
+      {
+        heading: "Key-person risk, and the new guardrails",
+        body: [
+          "Key-person risk is the risk that a company's value depends so heavily on one individual that losing them changes what the business is worth. Apple pushed out Steve Jobs in 1985 and he returned in 1997; OpenAI's board fired Sam Altman in November 2023 and he was back within days.",
+          "Nvidia's board paired Huang's return with new checks: the independent investigation will run to its conclusion, a National Security and Export Control Committee of independent directors has been formed, the company is searching for its first Chief Compliance Officer, and Harvey Jones remains board chair.",
+        ],
+      },
+      {
+        heading: "Three questions to ask about any company",
+        body: [
+          "1. If the founder disappeared tomorrow, who would the biggest customers call? 2. Is there a real succession plan, or just a name on a slide? 3. Who can say no to the CEO? A strong board isn't a threat to a great founder; it's insurance.",
+          "What to watch next: the investigation's findings, lawmakers' requests for a briefing, and China. Nvidia's $130 billion guidance for next quarter already assumes no data center compute sales to China.",
+        ],
+      },
+    ],
+    takeaway: "A trillion dollars came back in one day. It can leave just as fast if the facts change. That is what key-person risk looks like on a chart.",
+    chart: { title: "Biggest one-day market value gains", note: "Nvidia figure varies by timestamp ($888B–$1T); low end shown.", bars: [{ label: "Previous record", value: 450, display: "≈ $450B", tone: "mut" }, { label: "Nvidia · Nov 23, 2026", value: 888, display: "$888B+", tone: "good" }] },
+    sources: [
+      { title: "NVIDIA Board Reinstates Jensen Huang as President, CEO and Board Director (Form 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000090/nov23pressrelease.htm" },
+      { title: "NVIDIA Announces CEO Transition (Form 8-K, Nov 12, 2026)", url: "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm" },
+      { title: "Nvidia reinstates Jensen Huang as CEO amid pressure from President Trump, investors — Reuters via Yahoo Finance", url: "https://finance.yahoo.com/news/nvidia-reinstates-jensen-huang-ceo-135916841.html" },
+      { title: "Nvidia reinstates Jensen Huang as CEO — CBS News", url: "https://www.cbsnews.com/news/nvidia-reinstates-jensen-huang-ceo/" },
+      { title: "Nvidia Adds Record $888 Billion as Jensen Huang Returns — Benzinga", url: "https://www.benzinga.com/markets/large-cap/26/11/63536753/nvidia-stock-record-market-value-gain-jensen-huang-returns" },
+      { title: "Timeline of the stunning fall and comeback of Nvidia CEO Jensen Huang — AP", url: "https://www.wdbo.com/news/business/timeline-stunning-fall-comeback-nvidia-ceo-jensen-huang/UTBYF7CT2I54ZPMLVS6O46ILWA/" },
+    ],
+  },
+  {
     slug: "anthropic-104-billion-loss-explained",
     title: "Anthropic lost $104 billion. Here's the catch.",
     company: "Anthropic",
