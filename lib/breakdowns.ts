@@ -26,6 +26,7 @@ const anthropicSources = [
 export const breakdowns: Breakdown[] = [
   {
     slug: "nvidia-jensen-huang-11-days",
+    youtubeId: "VK0V-YNAHgA",
     title: "Nvidia lost its CEO. 11 days later, his return added about $1 trillion.",
     company: "Nvidia",
     date: "2026-11-24",
