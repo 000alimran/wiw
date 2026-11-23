@@ -90,6 +90,7 @@ export const breakdowns: Breakdown[] = [
   },
   {
     slug: "why-ai-agents-make-anthropic-20x-more",
+    youtubeId: "5ZN96NMZHRw",
     title: "Same customer, about 20× the bill: how AI agents change Anthropic's math",
     company: "Anthropic",
     date: "2026-11-23",
