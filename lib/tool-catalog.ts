@@ -1,5 +1,19 @@
 export const toolCatalog = [
   {
+    slug: "compound-growth",
+    title: "Compound Growth Visualizer",
+    description: "Interactive compound interest calculator: see, year by year, how much of your balance is your money and how much is growth.",
+    category: "Build wealth",
+    status: "New",
+  },
+  {
+    slug: "ipo-lockup",
+    title: "IPO Lock-up Calculator",
+    description: "Find the date insiders can start selling after an IPO, and how much of the lock-up has passed.",
+    category: "Investing",
+    status: "New",
+  },
+  {
     slug: "emergency-fund",
     title: "Emergency Fund",
     description: "Estimate a cash buffer from essential spending, income stability and dependents.",

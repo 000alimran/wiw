@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import {
   ArrowDownRight,
+  CalendarClock,
+  LineChart,
   ArrowUpRight,
   Banknote,
   Clock3,
@@ -114,6 +116,8 @@ export default function ToolCalculator({ slug }: { slug: string }) {
   if (slug === "savings-goal") return <SavingsGoal />;
   if (slug === "cost-of-waiting") return <CostOfWaiting />;
   if (slug === "lifestyle-inflation") return <LifestyleInflation />;
+  if (slug === "compound-growth") return <CompoundGrowth />;
+  if (slug === "ipo-lockup") return <IpoLockup />;
   return null;
 }
 
@@ -404,6 +408,147 @@ function LifestyleInflation() {
           <Stat label="Savings margin change" value={`${marginChange >= 0 ? "+" : ""}${pct(marginChange)} pts`} good={marginChange >= 0} />
         </div>
       </div>
+    </ToolShell>
+  );
+}
+
+function CompoundGrowth() {
+  const S = useCurrencySymbol();
+  const [start, setStart] = useState(1000);
+  const [monthly, setMonthly] = useState(500);
+  const [rate, setRate] = useState(8);
+  const [years, setYears] = useState(25);
+  const [hover, setHover] = useState<number | null>(null);
+
+  const rows = useMemo(() => {
+    const r = rate / 100 / 12;
+    let bal = start;
+    let contributed = start;
+    const out: { year: number; balance: number; contributed: number }[] = [];
+    for (let y = 1; y <= Math.min(Math.max(years, 1), 60); y++) {
+      for (let m = 0; m < 12; m++) {
+        bal = bal * (1 + r) + monthly;
+        contributed += monthly;
+      }
+      out.push({ year: y, balance: bal, contributed });
+    }
+    return out;
+  }, [start, monthly, rate, years]);
+
+  const last = rows[rows.length - 1] ?? { year: 0, balance: start, contributed: start };
+  const max = Math.max(...rows.map((r) => r.balance), 1);
+  const shown = hover !== null ? rows[hover] : last;
+  const growth = shown.balance - shown.contributed;
+
+  return (
+    <ToolShell
+      icon={LineChart}
+      eyebrow="Build wealth"
+      title="See compounding take over"
+      description="Hover or tap any year to see how much of your balance is your own money and how much is growth."
+    >
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Field label="Starting amount" value={start} onChange={setStart} />
+        <Field label="Monthly contribution" value={monthly} onChange={setMonthly} />
+        <Field label="Annual return" value={rate} onChange={setRate} suffix="%" step={0.5} />
+        <Field label="Years" value={years} onChange={setYears} suffix="yrs" min={1} />
+      </div>
+
+      <div className="rounded-2xl border bg-olive-950 p-5 text-white">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.14em] text-white/40">Year {shown.year}</p>
+            <strong className="mt-1 block text-4xl tracking-[-0.04em] text-limebrand">{S}{fmt.format(shown.balance)}</strong>
+          </div>
+          <div className="flex gap-5 text-xs">
+            <span><i className="mr-1.5 inline-block size-2.5 rounded-sm bg-white/30" />You put in {S}{fmt.format(shown.contributed)}</span>
+            <span><i className="mr-1.5 inline-block size-2.5 rounded-sm bg-limebrand" />Growth {S}{fmt.format(growth)}</span>
+          </div>
+        </div>
+        <div className="mt-6 flex h-56 items-end gap-[3px]" onMouseLeave={() => setHover(null)}>
+          {rows.map((r, i) => {
+            const h = (r.balance / max) * 100;
+            const c = (r.contributed / r.balance) * 100;
+            return (
+              <button
+                key={r.year}
+                type="button"
+                aria-label={`Year ${r.year}`}
+                onMouseEnter={() => setHover(i)}
+                onFocus={() => setHover(i)}
+                onClick={() => setHover(i)}
+                className={`relative flex flex-1 flex-col justify-end overflow-hidden rounded-t-sm transition-opacity ${hover !== null && hover !== i ? "opacity-40" : ""}`}
+                style={{ height: `${Math.max(h, 1.5)}%` }}
+              >
+                <span className="block w-full bg-limebrand" style={{ height: `${100 - c}%` }} />
+                <span className="block w-full bg-white/30" style={{ height: `${c}%` }} />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Stat label="Final balance" value={`${S}${fmt.format(last.balance)}`} />
+        <Stat label="Your contributions" value={`${S}${fmt.format(last.contributed)}`} />
+        <Stat label="Share from growth" value={`${pct(((last.balance - last.contributed) / Math.max(last.balance, 1)) * 100)}%`} good />
+      </div>
+    </ToolShell>
+  );
+}
+
+function IpoLockup() {
+  const [ipoDate, setIpoDate] = useState("2026-11-19");
+  const [days, setDays] = useState(180);
+
+  const ipo = new Date(`${ipoDate}T00:00:00`);
+  const valid = !Number.isNaN(ipo.getTime());
+  const expiry = new Date(ipo);
+  expiry.setDate(expiry.getDate() + (Number.isFinite(days) ? days : 0));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const left = Math.round((expiry.getTime() - today.getTime()) / 86400000);
+  const elapsed = Math.min(100, Math.max(0, ((days - left) / Math.max(days, 1)) * 100));
+  const nice = (d: Date) => d.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" });
+
+  return (
+    <ToolShell
+      icon={CalendarClock}
+      eyebrow="Investing"
+      title="When does the IPO lock-up end?"
+      description="Insiders usually can't sell for a set period after an IPO. Enter the listing date and lock-up length from the prospectus (S-1)."
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-2">
+          <span className="text-xs font-medium text-muted-foreground">IPO / first trading date</span>
+          <Input type="date" value={ipoDate} onChange={(e) => setIpoDate(e.target.value)} className="h-11 bg-background text-base font-semibold" />
+        </label>
+        <Field label="Lock-up length" value={days} onChange={setDays} suffix="days" min={1} />
+      </div>
+      <div className="flex flex-wrap gap-2 text-xs">
+        {[90, 180, 365].map((d) => (
+          <button key={d} type="button" onClick={() => setDays(d)} className={`rounded-full border px-3 py-1.5 ${days === d ? "border-foreground bg-foreground text-background" : "hover:bg-secondary"}`}>
+            {d} days
+          </button>
+        ))}
+      </div>
+      {valid ? (
+        <div className="grid gap-3 md:grid-cols-[1.2fr_.8fr]">
+          <Result
+            label="Lock-up expires"
+            value={nice(expiry)}
+            note={left > 0 ? `${left} days from today` : left === 0 ? "Today" : `Expired ${-left} days ago`}
+            tone={left > 0 ? "lime" : "neutral"}
+          />
+          <div className="rounded-xl bg-secondary p-4">
+            <span className="text-xs text-muted-foreground">Lock-up elapsed</span>
+            <div className="mt-3 h-3 overflow-hidden rounded-full bg-background">
+              <div className="h-full rounded-full bg-limebrand transition-all" style={{ width: `${elapsed}%` }} />
+            </div>
+            <strong className="mt-2 block text-lg">{pct(elapsed)}%</strong>
+          </div>
+        </div>
+      ) : null}
     </ToolShell>
   );
 }

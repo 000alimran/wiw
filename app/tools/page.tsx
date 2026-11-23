@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  CalendarClock,
+  LineChart,
   ArrowUpRight,
   Calculator,
   Gauge,
@@ -32,6 +34,8 @@ const icons = {
   "savings-goal": Target,
   "cost-of-waiting": Sparkles,
   "lifestyle-inflation": PiggyBank,
+  "compound-growth": LineChart,
+  "ipo-lockup": CalendarClock,
 } as const;
 
 export default function ToolsPage() {

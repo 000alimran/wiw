@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react";
 
+import InteractiveBars from "@/components/InteractiveBars";
 import JsonLd, { SITE_URL } from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -96,6 +97,8 @@ export default async function BreakdownPage({ params }: { params: Promise<{ slug
               </div>
             ))}
           </div>
+
+          {b.chart ? <InteractiveBars title={b.chart.title} note={b.chart.note} bars={b.chart.bars} /> : null}
 
           {b.sections.map((s) => (
             <section key={s.heading} className="mt-10">
