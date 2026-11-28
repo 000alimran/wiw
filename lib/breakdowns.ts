@@ -25,6 +25,87 @@ const anthropicSources = [
 
 export const breakdowns: Breakdown[] = [
   {
+    slug: "average-credit-card-balance-6678-real-cost",
+    title: "The average card balance is $6,678. Here's what it costs.",
+    company: "US credit cards",
+    date: "2026-11-28",
+    dek: "Card debt hit a record $1.285 trillion while late payments fell. At today's rates, the average balance costs about $124 a month in interest alone, and only one number on your statement tells you what yours costs.",
+    keyNumbers: [
+      { label: "US card balances, Q3 2026", value: "$1.285T" },
+      { label: "Average balance per borrower", value: "$6,678" },
+      { label: "Rate on accounts charged interest", value: "22.36%" },
+      { label: "Interest on that balance, per month", value: "≈ $124" },
+    ],
+    sections: [
+      {
+        heading: "Short answer",
+        body: [
+          "On the average card balance of $6,678, at the 22.36% rate banks charge on accounts that pay interest, the interest alone is about $124 a month, roughly $4 a day and nearly $1,500 a year (our math). That payment does not reduce the balance at all. To find your own number, multiply your balance by your rate and divide by 12.",
+        ],
+      },
+      {
+        heading: "The record",
+        body: [
+          "On November 10, 2026, the Federal Reserve Bank of New York reported that Americans owe $1.285 trillion on credit cards, the highest figure in the report's history. Balances rose $22 billion in the third quarter and $52 billion over the year.",
+          "All household debt together stood at $19.105 trillion, so cards are under 7% of it (our math). They are by far the most expensive slice. And the timing matters: the third quarter ends in September, so holiday shopping, travel and Black Friday are not in that number yet.",
+        ],
+      },
+      {
+        heading: "One person, one rate",
+        body: [
+          "TransUnion counts 178 million Americans carrying a card balance, and puts the average balance per borrower at $6,678, up from $6,523 a year earlier. That is $155 more, a little over 2% (our math).",
+          "The Federal Reserve's G.19 release publishes two card rates. Across all accounts it is 21.19%, but that includes people who pay in full every month and never see interest. On accounts that are actually charged interest, the rate is 22.36%. If you carry a balance, the second number is the one that applies to you. In 2021 the same measure was 16.45%, which on the same balance is about $92 a month, or about $33 a month less than today (our math).",
+        ],
+      },
+      {
+        heading: "The payment trap",
+        body: [
+          "Pay $125 a month on $6,678 at 22.36% and about $124 of the first payment is interest; only about 57 cents reaches the debt. With no new spending, clearing the card takes more than 24 years and costs about $29,860 in interest (our math).",
+          "The payment changes everything. At $150 a month: about 8 years and $7,700 of interest. At $200: almost four and a half years and about $3,900. At $300: two and a half years and about $2,000 (our math, fixed payment, fixed rate, no new purchases).",
+        ],
+      },
+      {
+        heading: "What December adds",
+        body: [
+          "Put $1,000 of holiday spending on the same card and keep paying $200 a month: the payoff stretches by 16 months and costs about $2,000 more in interest (our math). A thousand dollars of gifts ends up costing about three thousand, spread over almost six years.",
+          "Most cards also work out interest daily on that day's balance. If you pay the full statement balance every month, new purchases usually carry no interest until the due date: that is the grace period. Once you carry a balance from one month to the next, the grace period typically disappears, and a new purchase can start costing interest the day you make it. Check your own card agreement for the exact terms.",
+        ],
+      },
+      {
+        heading: "Record debt, fewer bad balances",
+        body: [
+          "In the same New York Fed report, the share of card balances moving into serious delinquency (90+ days past due) fell from 7.05% a year earlier to 6.87%. TransUnion sees the same direction: the share of card dollars 90+ days late fell from 2.05% to 1.99%.",
+          "Two things explain it. A record in dollars is not a record in pain: prices, paychecks and the number of cardholders all grow, so the total almost always drifts up. And the average hides a split: TransUnion's share of borrowers 90+ days behind rose from 2.37% to 2.50%. More people are in trouble, holding a smaller slice of the money. One reading, which is our interpretation rather than a finding of either report: households with room in their budgets carry bigger balances and pay on time, while a growing group with smaller balances is slipping.",
+        ],
+      },
+      {
+        heading: "The box on your statement",
+        body: [
+          "Under Regulation Z (the Truth in Lending rules), US card statements carry a minimum payment warning. It shows, for your actual balance and rate, how long paying only the minimum would take and what it would cost in total, and in most cases what you would need to pay each month to be done in three years. It is the most honest number a lender is required to show you.",
+        ],
+      },
+    ],
+    takeaway: "$1.285 trillion belongs to the country. $6,678 is the average behind it. Your balance times your rate, divided by 12, is the one that might be yours. This is education, not financial advice.",
+    chart: {
+      title: "Years to clear $6,678 at 22.36%, by monthly payment",
+      note: "Our math: fixed payment, fixed rate, no new purchases.",
+      bars: [
+        { label: "$125 / month", value: 24.4, display: "24+ yrs · ~$29,860 interest", tone: "bad" },
+        { label: "$150 / month", value: 8, display: "8 yrs · ~$7,700", tone: "mut" },
+        { label: "$200 / month", value: 4.4, display: "~4.5 yrs · ~$3,900", tone: "mut" },
+        { label: "$300 / month", value: 2.5, display: "2.5 yrs · ~$2,000", tone: "good" },
+      ],
+    },
+    sources: [
+      { title: "Household Debt and Credit Report, Q3 2026 — Federal Reserve Bank of New York (press release)", url: "https://www.newyorkfed.org/newsevents/news/research/2026/20261110" },
+      { title: "Quarterly Report on Household Debt and Credit, 2026:Q3 (PDF) — Federal Reserve Bank of New York", url: "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/pdf/hhdc_2026q3.pdf" },
+      { title: "Q3 2026 Credit Industry Insights Report — TransUnion", url: "https://www.transunion.com/lp/consumer-credit-insights" },
+      { title: "G.19 Consumer Credit, release of November 6, 2026 (card interest rates) — Federal Reserve Board", url: "https://www.federalreserve.gov/releases/g19/20261106/g19.pdf" },
+      { title: "Commercial Bank Interest Rate on Credit Card Plans, Accounts Assessed Interest — FRED", url: "https://fred.stlouisfed.org/series/TERMCBCCINTNS" },
+      { title: "Regulation Z, Appendix M1: Repayment Disclosures — CFPB", url: "https://www.consumerfinance.gov/rules-policy/regulations/1026/2026-04-08/m1/" },
+    ],
+  },
+  {
     slug: "nvidia-jensen-huang-11-days",
     youtubeId: "VK0V-YNAHgA",
     title: "Nvidia lost its CEO. 11 days later, his return added about $1 trillion.",
