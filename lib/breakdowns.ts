@@ -25,6 +25,78 @@ const anthropicSources = [
 
 export const breakdowns: Breakdown[] = [
   {
+    slug: "five-animals-five-money-habits",
+    title: "Five animals, five money habits. One of them is a myth.",
+    company: "Money habits",
+    date: "2026-11-28",
+    dek: "The shark, falcon, bison, fox and ant posters are everywhere. Here is what each one actually says about money, what the numbers look like, and which animal story does not hold up.",
+    youtubeId: "39MVTTSpIUk",
+    keyNumbers: [
+      { label: "Average US card balance (TransUnion)", value: "$6,678" },
+      { label: "Interest on it, per month, at 22.36%", value: "≈ $124" },
+      { label: "$10 a day, for one year", value: "$3,650" },
+      { label: "Animal stories that are mostly folklore", value: "1 of 5" },
+    ],
+    sections: [
+      {
+        heading: "Short answer",
+        body: [
+          "Each animal stands for one money habit: keep learning (shark), finish one goal at a time (falcon), look at the hard numbers early (bison), pair effort with a plan (fox) and stay consistent (ant). The biology behind the bison story is the weak one. The money math behind all five is not.",
+        ],
+      },
+      {
+        heading: "1. The shark: income needs movement",
+        body: [
+          "Some sharks really do have to keep swimming to breathe. Great white, mako and whale sharks are 'obligate ram ventilators': water only passes over their gills while they move. Many others, such as nurse sharks, can rest on the seabed and pump water with their cheek muscles.",
+          "Income behaves a lot like the first group. Skills that stop growing tend to be paid like skills that stopped growing. The habit is not working more hours; it is keeping the skill that earns the money in motion.",
+        ],
+      },
+      {
+        heading: "2. The falcon: one target at a time",
+        body: [
+          "A falcon picks one target. Money goals work better that way too: one goal funded to the finish shows progress you can see, while five goals funded a little at a time can all stall at 20%. Which goal comes first is a personal decision; the point is that there is a first one.",
+        ],
+      },
+      {
+        heading: "3. The bison: look at the storm early",
+        body: [
+          "For most households, the storm is the card statement. TransUnion puts the average card balance per borrower at $6,678, and the Federal Reserve reports 22.36% as the average rate on card accounts that are charged interest. Together that is about $124 a month in interest alone (our math), money that does not reduce the balance.",
+          "Looking early is the cheap part: the statement already shows your balance, your rate and a minimum payment warning box. We break the whole thing down in the card balance article linked below.",
+        ],
+      },
+      {
+        heading: "4. The fox: effort plus a plan",
+        body: [
+          "Hard work without a direction mostly produces tiredness. The fox habit is checking that effort points somewhere: a skill that is in demand, a role with a next step, a price that reflects the value. A raise you never ask for is money you never see.",
+        ],
+      },
+      {
+        heading: "5. The ant: small and boring, every day",
+        body: [
+          "Ten dollars a day is $3,650 a year (our math). The amount matters less than the fact that it happens without a decision every morning; automation does most of the work that motivation is supposed to do.",
+        ],
+      },
+      {
+        heading: "The myth",
+        body: [
+          "The popular line says bison deliberately run into storms to get through them faster. Snopes rates that claim a 'mixture': observers, going back to 19th-century rancher Charles Goodnight, describe bison facing into a storm more than marching through it. The National Park Service says bison turn toward winter storms, hunker down and wait for them to pass.",
+          "So the poster version is mostly folklore. The money version still works: face the number instead of turning away from it.",
+        ],
+      },
+    ],
+    takeaway: "Which of the five are you missing? Pick one habit, not five. This is education, not financial advice.",
+    sources: [
+      { title: "Do Sharks Really Die if They Stop Swimming? — Encyclopaedia Britannica", url: "https://www.britannica.com/story/do-sharks-really-die-if-they-stop-swimming" },
+      { title: "Must Sharks Keep Swimming to Stay Alive? — Live Science", url: "https://www.livescience.com/34777-sharks-keep-swimming-or-die.html" },
+      { title: "Fact check: Do bison walk through blizzards? — Snopes", url: "https://www.snopes.com/fact-check/bison-walk-through-blizzards/" },
+      { title: "Bison Bellows: winter adaptations — National Park Service", url: "https://www.nps.gov/articles/bison-bellows-12-31-15.htm" },
+      { title: "Q3 2026 Credit Industry Insights Report — TransUnion", url: "https://www.transunion.com/lp/consumer-credit-insights" },
+      { title: "G.19 Consumer Credit, release of November 6, 2026 — Federal Reserve Board", url: "https://www.federalreserve.gov/releases/g19/20261106/g19.pdf" },
+      { title: "The average card balance is $6,678. Here's what it costs. — Wealth in Whispers", url: "https://wealthinwhisper.com/breakdowns/average-credit-card-balance-6678-real-cost" },
+      { title: "Animal icons in the video — game-icons.net (CC BY 3.0)", url: "https://game-icons.net/" },
+    ],
+  },
+  {
     slug: "average-credit-card-balance-6678-real-cost",
     youtubeId: "jEbQGKPBP1M",
     title: "The average card balance is $6,678. Here's what it costs.",
