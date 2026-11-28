@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  async headers() {
+    // social schedulers fetch videos for upload from here
+    return [{ source: "/media/:path*", headers: [{ key: "Access-Control-Allow-Origin", value: "*" }] }];
+  },
   async redirects() {
     // one canonical host: www -> apex (avoids duplicate URLs in Google)
     return [

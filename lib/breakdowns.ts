@@ -26,6 +26,7 @@ const anthropicSources = [
 export const breakdowns: Breakdown[] = [
   {
     slug: "average-credit-card-balance-6678-real-cost",
+    youtubeId: "jEbQGKPBP1M",
     title: "The average card balance is $6,678. Here's what it costs.",
     company: "US credit cards",
     date: "2026-11-28",
